@@ -1,0 +1,18 @@
+doctype html 
+html 
+  head 
+    meta(charset='UTC-8')
+    title Sign up! 
+  body
+    h1 Welcome to Members Only! 
+    h2 Fill in the form to continue.
+    form(action="/signup", method="POST")
+      label Email
+        input(type='email' placeholder='example@email.com' required)
+      label Username
+        input(type='text' placeholder='johndoe123' required)
+      label Password 
+        input(type='password' required)
+      label Confirm Password 
+        input(type='password' required)
+      button Sign up!

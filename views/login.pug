@@ -1,0 +1,13 @@
+doctype html 
+html 
+  head 
+    meta(charset='UTC-8')
+    title Welcome back! 
+  body 
+    h1 Welcome back! 
+    form(action="/signup", method="POST")
+      label Email
+        input(type='email' placeholder='example@email.com' required)
+      label Password 
+        input(type='password' required)
+      button Log in
