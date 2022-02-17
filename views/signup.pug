@@ -8,15 +8,15 @@ html
     h2 Fill in the form to continue.
     form(action="/signup", method="POST")
       label First Name
-        input(type='text' placeholder='John' required)
+        input(type='text' name='firstname' placeholder='John' required)
       label Last Name 
-        input(type='text' placeholder='Doe' required)
+        input(type='text' name='lastname' placeholder='Doe' required)
       label Email
-        input(type='email' placeholder='example@email.com' required)
+        input(type='email' name='email' placeholder='example@email.com' required)
       label Username (optional)
-        input(type='text' placeholder='johndoe123')
+        input(type='text' name='username' placeholder='johndoe123')
       label Password 
-        input(type='password' required)
+        input(type='password' name='password' required)
       label Confirm Password 
-        input(type='password' required)
+        input(type='password' name='confirmPassword' required)
       button Sign up!
