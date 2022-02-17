@@ -7,10 +7,14 @@ html
     h1 Welcome to Members Only! 
     h2 Fill in the form to continue.
     form(action="/signup", method="POST")
+      label First Name
+        input(type='text' placeholder='John' required)
+      label Last Name 
+        input(type='text' placeholder='Doe' required)
       label Email
         input(type='email' placeholder='example@email.com' required)
-      label Username
-        input(type='text' placeholder='johndoe123' required)
+      label Username (optional)
+        input(type='text' placeholder='johndoe123')
       label Password 
         input(type='password' required)
       label Confirm Password 
