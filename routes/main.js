@@ -1,27 +1,15 @@
 var express = require('express');
 var router = express.Router();
 
-/* render home page */
-router.get('/home', function(req, res, next) {
-  res.render('main');
-});
+var user_controller = require('../controllers/userController');
+var message_controller = require('../controllers/messageController');
 
-/* render signup page */
-router.get('/signup', function(req, res, next) {
-  res.render('signup');
-});
+/* create new user */
+router.get('/signup', user_controller.create_user_get);
+router.post('/signup', user_controller.create_user_post);
 
-router.post('/signup', function(req, res, next) {
-  res.send('signup POST route not yet completed');
-});
-
-/* render login form */
-router.get('/login', function(req, res, next) {
-  res.render('login');
-});
-
-router.post('/login', function(req, res, next) {
-  res.send('login POST route not yet completed');
-});
+/* verify existing user */
+router.get('/login', user_controller.verify_user_get);
+router.post('/login', user_controller.verify_user_post);
 
 module.exports = router;
