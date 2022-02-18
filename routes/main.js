@@ -1,8 +1,8 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var user_controller = require('../controllers/userController');
-var message_controller = require('../controllers/messageController');
+const user_controller = require('../controllers/userController');
+const message_controller = require('../controllers/messageController');
 
 /* create new user */
 router.get('/signup', user_controller.create_user_get);

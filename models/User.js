@@ -1,11 +1,12 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-var userSchema = new Schema({
+const userSchema = new Schema({
   firstname: {type: String, required: true},
   lastname: {type: String, required: true},
-  username: {type: String},
+  username: {type: String, required: true},
   email: {type: String, required: true},
+  password: {type: String, required: true},
   isMember: {type: Boolean, required: true},
   isAdmin: {type: Boolean}
 });
