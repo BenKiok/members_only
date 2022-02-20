@@ -14,8 +14,10 @@ html
       label Email
         input(type='email' name='email' placeholder='example@email.com' value=(userInput ? userInput.email : '') required)
       label Username
-        input(type='text' name='username' placeholder='johndoe123' value=(userInput ? userInput.userinput : '') required)
+        input(type='text' name='username' placeholder='johndoe123' value=(userInput ? userInput.username : '') required)
       label Password 
         input(type='password' name='password' value='' required)
+      label Confirm Password
+        input(type='password' name='confirmPassword' value='' required)
       button Sign up!
     a(href='/') Back to home

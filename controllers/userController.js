@@ -12,6 +12,8 @@ exports.create_user_post = [
   body('lastname').trim().isLength({min:1}).escape(),
   body('email').trim().isEmail().normalizeEmail(),
   body('username').trim().escape(),
+  body('confirmPassword', 'Passwords must match')
+    .custom((value, { req }) => value === req.body.password),
   (req, res, next) => {
     const errors = validationResult(req);
 
