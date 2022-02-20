@@ -2,4 +2,5 @@ extends header
 block messages
   if currentUser 
     h2 Welcome back #{currentUser.firstname}!
+    a(href='/message/new') Create a message
   h1 All member messages will appear here.

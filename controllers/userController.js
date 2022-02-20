@@ -16,7 +16,7 @@ exports.create_user_post = [
     const errors = validationResult(req);
 
     if(!errors.isEmpty()) {
-      res.render('/signup', {userInput: req.body});
+      res.render('signup', {userInput: req.body});
     } else {
       bcrypt.hash(req.body.password, 10, (err, hashedPassword) => {
         if (err) {

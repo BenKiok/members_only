@@ -15,4 +15,8 @@ router.post('/login', user_controller.verify_user_post);
 /* logout user */
 router.get('/logout', user_controller.logout_user_get);
 
+/* create new message */
+router.get('/message/new', message_controller.create_message_get);
+router.post('/message/new', message_controller.create_message_post);
+
 module.exports = router;

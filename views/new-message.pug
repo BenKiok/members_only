@@ -1,0 +1,14 @@
+doctype html
+html 
+  head 
+    meta(charset='UTC-8')
+    title New Message 
+  body 
+  h1 New Message 
+  form(action='/message/new' method='POST')
+    label Title 
+      input(type='text' name='title' placeholder='My Message' value=(userInput ? userInput.title : '') required)
+    label Content 
+      input(type='text' name='content' placeholder='This is my message!' value=(userInput ? userInput.content : '') required)
+    button Post Message
+  a(href='/') Back to home
