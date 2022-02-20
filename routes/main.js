@@ -4,6 +4,9 @@ const router = express.Router();
 const user_controller = require('../controllers/userController');
 const message_controller = require('../controllers/messageController');
 
+/* render home page */
+router.get('/home', message_controller.view_messages_get);
+
 /* create new user */
 router.get('/signup', user_controller.create_user_get);
 router.post('/signup', user_controller.create_user_post);

@@ -3,6 +3,15 @@ const { DateTime } = require('luxon');
 const Message = require('../models/Message');
 const User = require('../models/User');
 
+exports.view_messages_get = (req, res, next) => {
+  Message.find({}, (err, messages) => {
+    if (err) {
+      return next(err);
+    }
+    res.render('main', {messages: messages});
+  });
+}
+
 exports.create_message_get = (req, res, next) => {
   res.render('new-message');
 }

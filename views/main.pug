@@ -3,4 +3,12 @@ block messages
   if currentUser 
     h2 Welcome back #{currentUser.firstname}!
     a(href='/message/new') Create a message
-  h1 All member messages will appear here.
+  h1 All Messages
+  if Array.from(messages).length
+    for message in messages 
+      .message 
+        h2 #{message.title}
+        p #{message.content}
+        h4 #{message.timestamp}
+  else
+    h2 No messages.
