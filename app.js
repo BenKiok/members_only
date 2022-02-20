@@ -1,6 +1,7 @@
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
+const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
@@ -12,6 +13,7 @@ require('dotenv').config();
 
 const indexRouter = require('./routes/index');
 const mainRouter = require('./routes/main');
+const User = require('./models/User');
 
 const app = express();
 
@@ -26,23 +28,32 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 passport.use(
-  new LocalStrategy((username, password, done) => {
-    User.findOne({ username: username }, (err, user) => {
-      if (err) { 
-        return done(err);
-      }
-      if (!user) {
-        return done(null, false, { message: "Incorrect username" });
-      }
-      bcrypt.compare(password, user.password, (err, res) => {
-        if (res) {
-          return done(null, user);
-        } else {
-          return done(null, false, { message: "Incorrect password" });
+  new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password'
+  },
+    (email, password, done) => {
+      User.findOne({ email: email }, (err, user) => {
+        if (err) {
+          console.log('Error searching for user')
+          return done(err);
         }
+        if (!user) {
+          console.log('Could not find user')
+          return done(null, false, { message: "Incorrect email" });
+        }
+        bcrypt.compare(password, user.password, (err, res) => {
+          if (res) {
+            console.log('Passwords match')
+            return done(null, user);
+          } else {
+            console.log('Passwords do not match')
+            return done(null, false, { message: "Incorrect password" });
+          }
+        });
       });
-    });
-  })
+    }
+  )
 );
 
 passport.serializeUser(function(user, done) {
@@ -55,7 +66,7 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
+app.use(session({ secret: 'membersonly', resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
@@ -69,6 +80,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json()) 
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);

@@ -12,4 +12,7 @@ router.post('/signup', user_controller.create_user_post);
 router.get('/login', user_controller.verify_user_get);
 router.post('/login', user_controller.verify_user_post);
 
+/* logout user */
+router.get('/logout', user_controller.logout_user_get);
+
 module.exports = router;

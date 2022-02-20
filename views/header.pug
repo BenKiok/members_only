@@ -5,9 +5,15 @@ html
     title Members Only! 
   body 
     nav
-      ul 
+      ul
+      if currentUser
         li
-          a(href='/login') Log in 
+          a(href='/membership') Become a member
+        li 
+          a(href='/logout') Log out
+      else
         li 
           a(href='/signup') Sign up
+        li
+          a(href='/login') Log in 
     block messages

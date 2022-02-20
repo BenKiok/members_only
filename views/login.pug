@@ -5,9 +5,10 @@ html
     title Welcome back! 
   body 
     h1 Welcome back! 
-    form(action="/signup", method="POST")
+    form(action="/login", method="POST")
       label Email
-        input(type='email' placeholder='example@email.com' required)
-      label Password 
-        input(type='password' required)
+        input(type='email' name='email' placeholder='example@email.com' value=(userInput ? userInput.email : '') required)
+      label Password
+        input(type='password' name='password' value='' required)
       button Log in
+    a(href='/') Back to home

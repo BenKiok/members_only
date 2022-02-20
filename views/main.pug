@@ -1,3 +1,5 @@
 extends header
-block messages 
-  h1 Hello! All member messages will appear here.
+block messages
+  if currentUser 
+    h2 Welcome back #{currentUser.firstname}!
+  h1 All member messages will appear here.
