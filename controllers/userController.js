@@ -3,7 +3,7 @@ const {body, validationResult} = require('express-validator');
 const bcrypt = require('bcryptjs/dist/bcrypt');
 const passport = require('passport');
 
-exports.create_user_get = function(req, res, next) {
+exports.create_user_get = (req, res, next) => {
   res.render('signup');
 }
 
@@ -45,7 +45,7 @@ exports.create_user_post = [
   }
 ]
 
-exports.verify_user_get = function(req, res, next) {
+exports.verify_user_get = (req, res, next) => {
   res.render('login');
 }
 
