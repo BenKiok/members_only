@@ -1,0 +1,11 @@
+doctype html
+html
+  head 
+    meta(charset='UTC-8')
+    title Become a Member 
+  body 
+    h1 Become a Member 
+    form(action='/membership' method='POST')
+      input(type='number' name='code' required)
+      button Submit
+    a(href='/') Back to home

@@ -22,4 +22,8 @@ router.get('/logout', user_controller.logout_user_get);
 router.get('/message/new', message_controller.create_message_get);
 router.post('/message/new', message_controller.create_message_post);
 
+/* change user membership */
+router.get('/membership', user_controller.set_member_get);
+router.post('/membership', user_controller.set_member_post);
+
 module.exports = router;

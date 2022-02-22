@@ -71,3 +71,32 @@ exports.logout_user_get = (req, res, next) => {
   req.logout();
   res.redirect('/');
 }
+
+exports.set_member_get = (req, res, next) => {
+  res.render('new-member');
+}
+
+exports.set_member_post = [
+  body('code').isNumeric().isLength({min:6, max:6}),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if(!errors.isEmpty()) {
+      res.render('new-member');
+    } else {
+      let currentUser = res.locals.currentUser;
+      
+      if (!currentUser) {
+        res.redirect('/login');
+      } else if (req.body.code !== '123456') {
+        res.redirect('/membership');
+      } else {
+        User.findByIdAndUpdate(currentUser._id, { isMember: true }, (err, user) => {
+          if (err) {
+            return next(err);
+          }
+          res.redirect('/');
+        });
+      }
+    }
+  }
+]
