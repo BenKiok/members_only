@@ -9,11 +9,10 @@ block messages
       .message 
         h2 #{message.title}
         p #{message.content}
-        h4 #{((currentUser && currentUser.isMember) ? (message.author.username + ' | ') : '') + message.timestamp}
+        if currentUser && currentUser.isMember
+          h4 #{message.author.username + ' | ' + message.timestamp}
         if currentUser && currentUser.isAdmin 
-          .admin 
-            form(action=(message.url) + '/edit' method='GET')
-              button Edit
+          .admin
             form(action=(message.url) + '/delete' method='GET')
               button Delete
   else
