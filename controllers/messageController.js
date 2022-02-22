@@ -4,7 +4,9 @@ const Message = require('../models/Message');
 const User = require('../models/User');
 
 exports.view_messages_get = (req, res, next) => {
-  Message.find({}, (err, messages) => {
+  Message.find({})
+  .populate('author')
+  .exec((err, messages) => {
     if (err) {
       return next(err);
     }

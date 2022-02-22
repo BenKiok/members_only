@@ -34,19 +34,15 @@ passport.use(
     (email, password, done) => {
       User.findOne({ email: email }, (err, user) => {
         if (err) {
-          console.log('Error searching for user')
           return done(err);
         }
         if (!user) {
-          console.log('Could not find user')
           return done(null, false, { message: "Incorrect email" });
         }
         bcrypt.compare(password, user.password, (err, res) => {
           if (res) {
-            console.log('Passwords match')
             return done(null, user);
           } else {
-            console.log('Passwords do not match')
             return done(null, false, { message: "Incorrect password" });
           }
         });

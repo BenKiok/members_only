@@ -6,7 +6,15 @@ html
   body 
     nav
       ul
-      if currentUser
+      if currentUser && currentUser.isAdmin
+        li
+          a(href='/logout') Log out
+      else if currentUser && currentUser.isMember
+        li
+          a(href='/admin') Become an admin
+        li
+          a(href='/logout') Log out
+      else if currentUser
         li
           a(href='/membership') Become a member
         li 
