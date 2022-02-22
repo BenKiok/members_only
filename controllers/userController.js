@@ -100,3 +100,32 @@ exports.set_member_post = [
     }
   }
 ]
+
+exports.set_admin_get = (req, res, next) => {
+  res.render('new-admin');
+}
+
+exports.set_admin_post = [
+  body('code').isNumeric().isLength({min:6, max:6}),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if(!errors.isEmpty()) {
+      res.render('new-admin');
+    } else {
+      let currentUser = res.locals.currentUser;
+      
+      if (!currentUser) {
+        res.redirect('/login');
+      } else if (req.body.code !== '654321') {
+        res.redirect('/admin');
+      } else {
+        User.findByIdAndUpdate(currentUser._id, { isAdmin: true }, (err, user) => {
+          if (err) {
+            return next(err);
+          }
+          res.redirect('/');
+        });
+      }
+    }
+  }
+]

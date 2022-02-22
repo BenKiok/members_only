@@ -26,4 +26,8 @@ router.post('/message/new', message_controller.create_message_post);
 router.get('/membership', user_controller.set_member_get);
 router.post('/membership', user_controller.set_member_post);
 
+/* add member admin status */
+router.get('/admin', user_controller.set_admin_get);
+router.post('/admin', user_controller.set_admin_post);
+
 module.exports = router;
