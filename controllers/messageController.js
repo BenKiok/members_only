@@ -1,7 +1,6 @@
 const { body, validationResult } = require('express-validator');
 const { DateTime } = require('luxon');
 const Message = require('../models/Message');
-const User = require('../models/User');
 
 exports.view_messages_get = (req, res, next) => {
   Message.find({})
@@ -27,14 +26,7 @@ exports.create_message_post = [
     if(!errors.isEmpty()) {
       res.render('new-message', {userInput: req.body});
     } else {
-      let currentUser = res.locals.currentUser,
-          date;
-
-      if (!currentUser) {
-        res.redirect('/login');
-      }
-      
-      date = DateTime.now().toFormat("DDD 'at' t");
+      let date = DateTime.now().toFormat("DDD 'at' t");
 
       const message = new Message({
         title: req.body.title,
@@ -50,3 +42,21 @@ exports.create_message_post = [
     }
   }
 ]
+
+exports.delete_message_get = (req, res, next) => {
+  Message.findById(req.params.id, (err, message) => {
+    if (err) {
+      return next(err);
+    }
+    res.render('delete-message', {message: message});
+  });
+}
+
+exports.delete_message_post = (req, res, next) => {
+  Message.findByIdAndDelete(req.params.id, err => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect('/');
+  });
+}

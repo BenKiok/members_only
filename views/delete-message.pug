@@ -1,0 +1,11 @@
+doctype html
+html
+  head
+    meta(charset='UTC-8')
+    title Delete Message
+  body
+    h1 Are you sure you want to delete #{message.title} by #{message.author.username}?
+    h2 This action is permanent and cannot be reversed.
+    form(action=('/message/'+message._id+'/delete') method='POST')
+      button Yes, delete message
+    a(href='/') No, return to main page

@@ -6,14 +6,14 @@ block messages
   h1 All Messages
   if Array.from(messages).length
     for message in messages 
-      .message 
+      .message
         h2 #{message.title}
         p #{message.content}
         if currentUser && currentUser.isMember
           h4 #{message.author.username + ' | ' + message.timestamp}
         if currentUser && currentUser.isAdmin 
           .admin
-            form(action=(message.url) + '/delete' method='GET')
+            form(action=('/message/'+message._id+'/delete') method='GET')
               button Delete
   else
     h2 No messages.

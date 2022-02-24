@@ -18,10 +18,6 @@ router.post('/login', user_controller.verify_user_post);
 /* logout user */
 router.get('/logout', user_controller.logout_user_get);
 
-/* create new message */
-router.get('/message/new', message_controller.create_message_get);
-router.post('/message/new', message_controller.create_message_post);
-
 /* change user membership */
 router.get('/membership', user_controller.set_member_get);
 router.post('/membership', user_controller.set_member_post);
@@ -29,5 +25,13 @@ router.post('/membership', user_controller.set_member_post);
 /* add member admin status */
 router.get('/admin', user_controller.set_admin_get);
 router.post('/admin', user_controller.set_admin_post);
+
+/* create new message */
+router.get('/message/new', message_controller.create_message_get);
+router.post('/message/new', message_controller.create_message_post);
+
+/* delete messages */
+router.get('/message/:id/delete', message_controller.delete_message_get);
+router.post('/message/:id/delete', message_controller.delete_message_post);
 
 module.exports = router;
