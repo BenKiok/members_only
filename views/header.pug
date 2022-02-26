@@ -2,26 +2,39 @@ doctype html
 html
   head 
     meta(charset='UTC-8')
-    title Members Only! 
-  body 
-    nav
-      ul
-      if currentUser && currentUser.isAdmin
-        li
-          a(href='/logout') Log out
-      else if currentUser && currentUser.isMember
-        li
-          a(href='/admin') Become an admin
-        li
-          a(href='/logout') Log out
-      else if currentUser
-        li
-          a(href='/membership') Become a member
-        li 
-          a(href='/logout') Log out
-      else
-        li 
-          a(href='/signup') Sign up
-        li
-          a(href='/login') Log in 
+    title Members Only!
+    link(rel='stylesheet', href='/stylesheets/reset.css')
+    link(rel='stylesheet', href='/stylesheets/main.css')
+  body
+    .container 
+      nav
+        .logo 
+          h2 
+            a(href='/') Members Only
+        ul
+        if currentUser && currentUser.isAdmin
+          li
+            form(action='/logout' method='GET')
+              button.btn Log out
+        else if currentUser && currentUser.isMember
+          li
+            form(action='/admin' method='GET')
+              button.btn.btn-inverse Become an admin
+          li
+            form(action='/logout' method='GET')
+              button.btn Log out
+        else if currentUser
+          li
+            form(action='/membership' method='GET')
+              button.btn.btn-inverse Become a member
+          li 
+            form(action='/logout' method='GET')
+              button.btn Log out
+        else
+          li 
+            form(action='/signup' method='GET')
+              button.btn.btn-inverse Sign up
+          li
+            form(action='/login' method='GET')
+              button.btn Log in 
     block messages

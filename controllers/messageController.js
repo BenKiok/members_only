@@ -32,7 +32,7 @@ exports.create_message_post = [
         title: req.body.title,
         content: req.body.content,
         timestamp: date,
-        author: currentUser
+        author: res.locals.currentUser
       }).save((err, message) => {
         if (err) {
           return next(err);

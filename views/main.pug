@@ -1,19 +1,24 @@
 extends header
 block messages
-  if currentUser 
-    h2 Welcome back #{currentUser.firstname}!
-    a(href='/message/new') Create a message
-  h1 All Messages
-  if Array.from(messages).length
-    for message in messages 
-      .message
-        h2 #{message.title}
-        p #{message.content}
-        if currentUser && currentUser.isMember
-          h4 #{message.author.username + ' | ' + message.timestamp}
-        if currentUser && currentUser.isAdmin 
-          .admin
-            form(action=('/message/'+message._id+'/delete') method='GET')
-              button Delete
-  else
-    h2 No messages.
+  if currentUser
+    .welcome-back
+      h3 Welcome back #{currentUser.firstname}!
+      form(action='/message/new' method='GET')
+        button.btn.btn-inverse.btn-reverse Create a message
+  .all-messages
+    h1 All Messages
+    if Array.from(messages).length
+      for message in messages 
+        .message
+          h2 #{message.title}
+          .content
+            p #{message.content}
+            if currentUser && currentUser.isAdmin
+              form(action=('/message/'+message._id+'/delete') method='GET')
+                button.btn.btn-inverse.btn-delete Delete
+          if currentUser && currentUser.isMember
+            .details
+              p #{message.author.username}
+              p #{message.timestamp}
+    else
+      h2 No messages.
