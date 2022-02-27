@@ -2,11 +2,16 @@ doctype html
 html
   head 
     meta(charset='UTC-8')
-    title Become a Member 
-  body 
-    h1 Become a Member 
-    form(action='/membership' method='POST')
-      input(type='number' name='code' required)
-      button Submit
-    p.hint Hint: one thru six
-    a(href='/') Back to home
+    title Become a Member
+    link(rel='stylesheet', href='/stylesheets/reset.css')
+    link(rel='stylesheet', href='/stylesheets/main.css')
+  body
+    .welcome-back.form-header
+      h1 Become a Member
+    .form-container
+      form.form(action='/membership' method='POST')
+        label Enter code
+          input(type='number' name='code' required)
+        p.hint Hint: one thru six
+        button.btn.btn-inverse Submit
+    a.return-home(href='/') Back to home

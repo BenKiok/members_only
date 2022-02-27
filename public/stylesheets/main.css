@@ -14,6 +14,7 @@ body {
 .container {
   width: 100%;
   height: 65px;
+  border-bottom: 1px solid #ccc;
 }
 nav {
   height: 100%;
@@ -119,4 +120,61 @@ li {
   display: flex;
   justify-content: space-between;
   border-top: 1px solid #ccc;
+}
+.form-header {
+  padding-top: 35px;
+}
+.form-container {
+  width: 100%;
+  padding: 35px 65px;
+  display: flex;
+  justify-content: center;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.form label {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+.form input {
+  padding: 2px 6px;
+  margin-left: 8px;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.form input:focus {
+  outline-color: var(--link-color);
+}
+.return-home {
+  margin-left: 40px;
+  font-size: 20px;
+}
+.return-home:hover {
+  text-decoration: underline;
+}
+.hint {
+  margin-bottom: 20px;
+}
+.delete-container {
+  display: flex;
+  flex-direction: column;
+}
+.delete-message {
+  border-left: 3px solid #ccc;
+  margin-bottom: 25px;
+}
+.delete-message h2 {
+  font-size: 20px;
+}
+.disclaimer {
+  margin: 35px 0 25px 0;
+}
+.delete-form {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }

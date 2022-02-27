@@ -2,13 +2,17 @@ doctype html
 html 
   head 
     meta(charset='UTC-8')
-    title Welcome back! 
-  body 
-    h1 Welcome back! 
-    form(action="/login", method="POST")
-      label Email
-        input(type='email' name='email' placeholder='example@email.com' value=(userInput ? userInput.email : '') required)
-      label Password
-        input(type='password' name='password' value='' required)
-      button Log in
-    a(href='/') Back to home
+    title Welcome back!
+    link(rel='stylesheet', href='/stylesheets/reset.css')
+    link(rel='stylesheet', href='/stylesheets/main.css')
+  body
+    .welcome-back.form-header
+      h1 Welcome back!
+    .form-container
+      form.form(action="/login", method="POST")
+        label Email
+          input(type='email' name='email' placeholder='example@email.com' value=(userInput ? userInput.email : '') required)
+        label Password
+          input(type='password' name='password' value='' required)
+        button.btn.btn-inverse Log in
+    a.return-home(href='/') Back to home

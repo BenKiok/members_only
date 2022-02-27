@@ -2,13 +2,17 @@ doctype html
 html 
   head 
     meta(charset='UTC-8')
-    title New Message 
-  body 
-    h1 New Message 
-    form(action='/message/new' method='POST')
-      label Title 
-        input(type='text' name='title' placeholder='My Message' value=(userInput ? userInput.title : '') required)
-      label Content 
-        input(type='text' name='content' placeholder='This is my message!' value=(userInput ? userInput.content : '') required)
-      button Post Message
-    a(href='/') Back to home
+    title New Message
+    link(rel='stylesheet', href='/stylesheets/reset.css')
+    link(rel='stylesheet', href='/stylesheets/main.css')
+  body
+    .welcome-back.form-header
+      h1 New Message
+    .form-container
+      form.form(action='/message/new' method='POST')
+        label Title 
+          input(type='text' name='title' placeholder='My Message' value=(userInput ? userInput.title : '') required)
+        label Content 
+          input(type='text' name='content' placeholder='This is my message!' value=(userInput ? userInput.content : '') required)
+        button.btn.btn-inverse Post Message
+    a.return-home(href='/') Back to home

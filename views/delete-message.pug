@@ -3,9 +3,16 @@ html
   head
     meta(charset='UTC-8')
     title Delete Message
+    link(rel='stylesheet', href='/stylesheets/reset.css')
+    link(rel='stylesheet', href='/stylesheets/main.css')
   body
-    h1 Are you sure you want to delete #{message.title} by #{message.author.username}?
-    h2 This action is permanent and cannot be reversed.
-    form(action=('/message/'+message._id+'/delete') method='POST')
-      button Yes, delete message
-    a(href='/') No, return to main page
+    .welcome-back.form-header
+      h1 Delete the following message:
+    .form-container.delete-container
+      .message.delete-message
+        h2 #{message.title} by #{message.author.username}
+      h2.disclaimer This action is permanent and cannot be reversed.
+      .delete-form
+        form(action=('/message/'+message._id+'/delete') method='POST')
+          button.btn.btn-inverse.btn-delete Yes, delete message
+        a.return-home(href='/') No, return to main page

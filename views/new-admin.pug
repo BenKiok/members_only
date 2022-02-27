@@ -2,11 +2,16 @@ doctype html
 html
   head 
     meta(charset='UTC-8')
-    title Become an Admin 
-  body 
-    h1 Become an Admin 
-    form(action='/admin' method='POST')
-      input(type='number' name='code' required)
-      button Submit
-    p.hint Hint: reverse member code
-    a(href='/') Back to home
+    title Become an Admin
+    link(rel='stylesheet', href='/stylesheets/reset.css')
+    link(rel='stylesheet', href='/stylesheets/main.css')
+  body
+    .welcome-back.form-header
+      h1 Become an Admin
+    .form-container
+      form.form(action='/admin' method='POST')
+        label Enter code
+          input(type='number' name='code' required)
+        p.hint Hint: reverse member code
+        button Submit
+    a.return-home(href='/') Back to home

@@ -2,22 +2,25 @@ doctype html
 html 
   head 
     meta(charset='UTC-8')
-    title Sign up! 
+    title Sign up!
+    link(rel='stylesheet', href='/stylesheets/reset.css')
+    link(rel='stylesheet', href='/stylesheets/main.css')
   body
-    h1 Welcome to Members Only! 
-    h2 Fill in the form to continue.
-    form(action="/signup", method="POST")
-      label First Name
-        input(type='text' name='firstname' placeholder='John' value=(userInput ? userInput.firstname : '') required)
-      label Last Name 
-        input(type='text' name='lastname' placeholder='Doe' value=(userInput ? userInput.lastname : '') required)
-      label Email
-        input(type='email' name='email' placeholder='example@email.com' value=(userInput ? userInput.email : '') required)
-      label Username
-        input(type='text' name='username' placeholder='johndoe123' value=(userInput ? userInput.username : '') required)
-      label Password 
-        input(type='password' name='password' value='' required)
-      label Confirm Password
-        input(type='password' name='confirmPassword' value='' required)
-      button Sign up!
-    a(href='/') Back to home
+    .welcome-back.form-header
+      h1 Welcome to Members Only!
+    .form-container
+      form.form(action="/signup", method="POST")
+        label First Name
+          input(type='text' name='firstname' placeholder='John' value=(userInput ? userInput.firstname : '') required)
+        label Last Name 
+          input(type='text' name='lastname' placeholder='Doe' value=(userInput ? userInput.lastname : '') required)
+        label Email
+          input(type='email' name='email' placeholder='example@email.com' value=(userInput ? userInput.email : '') required)
+        label Username
+          input(type='text' name='username' placeholder='johndoe123' value=(userInput ? userInput.username : '') required)
+        label Password 
+          input(type='password' name='password' value='' required)
+        label Confirm Password
+          input(type='password' name='confirmPassword' value='' required)
+        button.btn.btn-inverse Sign up!
+    a.return-home(href='/') Back to home
