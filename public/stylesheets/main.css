@@ -164,6 +164,7 @@ li {
   flex-direction: column;
 }
 .delete-message {
+  font-size: 22px;
   border-left: 3px solid #ccc;
   margin-bottom: 25px;
 }

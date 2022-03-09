@@ -1,6 +1,11 @@
 const { body, validationResult } = require('express-validator');
 const { DateTime } = require('luxon');
 const Message = require('../models/Message');
+const decodeText = string => {
+  return string.replace(/&amp;/g, '&')  
+               .replace(/&apos;/g, '\'')
+               .replace(/&amp;/g, '&');
+}
 
 exports.view_messages_get = (req, res, next) => {
   Message.find({})
@@ -29,8 +34,8 @@ exports.create_message_post = [
       let date = DateTime.now().toFormat("DDD 'at' t");
 
       const message = new Message({
-        title: req.body.title,
-        content: req.body.content,
+        title: decodeText(req.body.title),
+        content: decodeText(req.body.content),
         timestamp: date,
         author: res.locals.currentUser
       }).save((err, message) => {
@@ -44,7 +49,9 @@ exports.create_message_post = [
 ]
 
 exports.delete_message_get = (req, res, next) => {
-  Message.findById(req.params.id, (err, message) => {
+  Message.findById(req.params.id)
+  .populate('author') 
+  .exec((err, message) => {
     if (err) {
       return next(err);
     }

@@ -10,7 +10,10 @@ html
       h1 Delete the following message:
     .form-container.delete-container
       .message.delete-message
-        h2 #{message.title} by #{message.author.username}
+        p 
+          strong #{message.title} 
+          | by 
+          strong #{message.author.username}
       h2.disclaimer This action is permanent and cannot be reversed.
       .delete-form
         form(action=('/message/'+message._id+'/delete') method='POST')
